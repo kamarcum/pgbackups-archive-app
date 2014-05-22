@@ -7,13 +7,9 @@ class PgbackupsArchive::Storage
 end
 
 class RunPgbackupsArchive
-  include NewRelic::Agent::Instrumentation::ControllerInstrumentation
-
   def call
     Heroku::Client::PgbackupsArchive.perform
   end
-
-  add_transaction_tracer :call, category: :task
 end
 
 namespace :pgbackups do
