@@ -1,4 +1,3 @@
-require "newrelic_rpm"
 require "pgbackups-archive"
 
 
@@ -20,6 +19,3 @@ namespace :pgbackups do
   end
 
 end
-
-NewRelic::Agent.manual_start app_name: "pgbackups-archive-dummy",
-  transaction_tracer: { transaction_threshold: 1.5 }
