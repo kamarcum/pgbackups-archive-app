@@ -1,5 +1,10 @@
 require "pgbackups-archive"
 
+class PgbackupsArchive::Storage
+  def store
+    bucket.files.create :key => @key, :body => @file, :public => false, :encrypted => true
+  end
+end
 
 class RunPgbackupsArchive
   include NewRelic::Agent::Instrumentation::ControllerInstrumentation
